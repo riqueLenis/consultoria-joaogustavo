@@ -55,6 +55,7 @@
             42h · com acordo (até dez/2027)
           </button>
         </div>
+        <button class="btn-sair" type="button" id="btn-sair">Sair</button>
       </div>
     </header>
 
@@ -2346,6 +2347,10 @@
         save();
         renderAll();
         toast("Simulador zerado");
+      };
+      $("#btn-sair").onclick = () => {
+        sessionStorage.removeItem("padroniza-usuario");
+        location.replace("login.html");
       };
       $("#btn-exemplo").onclick = () => {
         S = exemplo();

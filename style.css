@@ -109,6 +109,23 @@ header .wrap {
   gap: 12px 24px;
   align-items: flex-end;
   justify-content: space-between;
+  position: relative;
+}
+.btn-sair {
+  position: absolute;
+  top: 22px;
+  right: max(16px, env(safe-area-inset-right, 0px));
+  font: 600 12px var(--f-body);
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #2a4470;
+  background: transparent;
+  color: #c9d6ea;
+  cursor: pointer;
+}
+.btn-sair:hover {
+  border-color: #c9d6ea;
+  color: #fff;
 }
 .logo {
   height: 42px;

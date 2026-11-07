@@ -1,0 +1,2384 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <script>
+      try {
+        if (!sessionStorage.getItem("padroniza-usuario"))
+          location.replace("login.html");
+      } catch (e) {
+        location.replace("login.html");
+      }
+    </script>
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,viewport-fit=cover"
+    />
+    <meta
+      name="description"
+      content="Simulador gratuito da Padroniza para montar a escala 5x2 do seu restaurante, com setores, picos e benefícios."
+    />
+    <title>Simulador de Escala 5x2</title>
+    <meta name="claude:viewport-fit-sides" content="cover" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="band">
+      <div class="wrap">
+        <div>
+          <img
+            class="logo"
+            id="logo"
+            src="data:image/png;base64,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"
+            alt="PadronizaCheck · Consultoria · Food Service"
+            width="641"
+            height="123"
+          />
+          <h1>Simulador de Escala 5x2</h1>
+          <p class="lede">
+            Entenda o fim da escala 6x1 (EC 141/2026) e transforme a escala
+            atual em uma 5x2, com cada setor coberto nos dias e horários de
+            pico.
+          </p>
+        </div>
+        <div class="fase-chip" role="group" aria-label="Fase da transição">
+          <button type="button" data-fase="40">
+            40h · sem acordo coletivo
+          </button>
+          <button type="button" data-fase="42">
+            42h · com acordo (até dez/2027)
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <nav class="tabs" aria-label="Etapas">
+      <div class="wrap" role="tablist">
+        <button role="tab" data-tab="lei">
+          <span class="n">§</span>Entenda a lei
+        </button>
+        <button role="tab" data-tab="empresa">
+          <span class="n">1</span>Empresa
+        </button>
+        <button role="tab" data-tab="funcionamento">
+          <span class="n">2</span>Dias e picos
+        </button>
+        <button role="tab" data-tab="equipe">
+          <span class="n">3</span>Setores e equipe
+        </button>
+        <button role="tab" data-tab="beneficios">
+          <span class="n">4</span>Benefícios
+        </button>
+        <button role="tab" data-tab="escala">
+          <span class="n">5</span>Escala sugerida
+        </button>
+      </div>
+    </nav>
+
+    <main>
+      <div class="wrap">
+        <section class="panel" id="p-lei" hidden>
+          <div>
+            <h2>O fim da escala 6x1, em linguagem simples</h2>
+            <p class="hint">
+              A Emenda Constitucional nº 141, promulgada em 16 de outubro de
+              2026, mudou o artigo 7º da Constituição. Veja o que muda para
+              restaurantes e para a equipe, e quando.
+            </p>
+          </div>
+          <div class="lei-hero">
+            <div class="box">
+              <h3>Cronograma</h3>
+              <div class="timeline">
+                <div class="tl-item">
+                  <span class="tl-date">16/10/2026</span>
+                  <div>
+                    <b>Emenda promulgada</b
+                    ><span
+                      >A lei já existe. A partir daqui começa a contagem da
+                      transição.</span
+                    >
+                  </div>
+                </div>
+                <div class="tl-item" id="tl-1">
+                  <span class="tl-date">16/12/2026</span>
+                  <div>
+                    <b>Duas folgas por semana</b
+                    ><span
+                      >Limite cai para 42h semanais. Sem acordo coletivo, o
+                      limite diário de 8h faz a jornada já ficar em 40h (8h × 5
+                      dias).</span
+                    >
+                  </div>
+                </div>
+                <div class="tl-item" id="tl-2">
+                  <span class="tl-date">Dez/2027</span>
+                  <div>
+                    <b>40 horas para todos</b
+                    ><span
+                      >Fim da transição. Limite definitivo de 40h semanais, em 5
+                      dias de no máximo 8h.</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="count" id="count"></div>
+          </div>
+          <div class="rules">
+            <div class="rule key">
+              <span class="k">Ponto de atenção</span
+              ><b>8h por dia continua sendo o limite</b>
+              <p>
+                Trabalhar 42h na transição significa 8h24 por dia. Isso só é
+                permitido com <b>acordo ou convenção coletiva</b>. Sem acordo, a
+                escala precisa ser de 5 dias de 8h, ou seja, 40h já em dezembro
+                de 2026.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Folgas</span
+              ><b>Dois descansos remunerados por semana</b>
+              <p>
+                Antes era no mínimo uma folga. Agora são obrigatoriamente duas,
+                e o funcionário trabalha no máximo 5 dias. O dia da semana não
+                importa: pode folgar em dia útil e trabalhar sábado e domingo.
+              </p>
+            </div>
+            <div class="rule key">
+              <span class="k">Domingos</span
+              ><b>Rodízio obrigatório de domingos</b>
+              <p>
+                <b>Mulheres:</b> não podem trabalhar dois domingos seguidos;
+                trabalham um e folgam no outro. <b>Homens:</b> podem trabalhar
+                até dois domingos seguidos; o terceiro tem que ser folga. O
+                simulador monta esse rodízio para 4 semanas.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Salário</span
+              ><b>Proibido reduzir salário ou piso</b>
+              <p>
+                A carga horária cai, mas o salário e os pisos da categoria ficam
+                iguais.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Outras escalas</span><b>Só com acordo coletivo</b>
+              <p>
+                Acordo ou convenção pode criar regime compensatório diferente da
+                5x2, desde que garanta em média duas folgas por semana no mês e
+                pelo menos uma folga em cada semana.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Acordos antigos</span
+              ><b>Cláusulas incompatíveis perdem efeito</b>
+              <p>
+                A partir de dezembro de 2026, regras de convenções e acordos
+                sobre jornada e folga que contrariem a emenda deixam de valer.
+                Vale revisar o que a empresa segue hoje.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Hora extra</span
+              ><b>Continua com adicional de 50%</b>
+              <p>
+                O que passar da jornada é hora extra, paga com no mínimo 50%
+                sobre a hora normal, ou mais se a convenção da categoria prever.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Exceções</span><b>Quem tem regra própria</b>
+              <p>
+                Empregados com nível superior que ganham a partir de 2,5 vezes o
+                teto do INSS (cerca de R$ 21,2 mil) ficam fora do controle de
+                jornada. Empresas com contrato com o poder público têm até 1
+                ano.
+              </p>
+            </div>
+            <div class="rule">
+              <span class="k">Pequenas empresas</span
+              ><b>Pode vir uma lei específica</b>
+              <p>
+                A emenda permite uma lei complementar com medidas de transição
+                para MEI, microempresas e empresas de pequeno porte. Essa lei
+                ainda não existe, então hoje a regra vale para todos.
+              </p>
+            </div>
+          </div>
+          <div class="box">
+            <h3>O que fazer agora</h3>
+            <ol class="steps">
+              <li>
+                <span
+                  >Levantar a escala de hoje<small
+                    >Quem trabalha em cada setor, folga atual e horário de
+                    entrada e saída.</small
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  >Simular a 5x2 aqui<small
+                    >Ver quais setores ficam descobertos no pico e se vai
+                    precisar contratar.</small
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  >Falar com a contabilidade e o sindicato<small
+                    >Saber se a categoria terá acordo para as 42h ou se a
+                    empresa já vai para 40h.</small
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  >Ajustar horários de entrada<small
+                    >Com menos horas por dia, pode ser preciso antecipar ou
+                    atrasar a entrada para cobrir o pico.</small
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  >Comunicar a equipe com antecedência<small
+                    >Mostrar a nova escala, as duas folgas e que o salário não
+                    muda.</small
+                  ></span
+                >
+              </li>
+              <li>
+                <span
+                  >Testar antes de 16 de dezembro<small
+                    >Rodar a nova escala por uma ou duas semanas e corrigir os
+                    furos.</small
+                  ></span
+                >
+              </li>
+            </ol>
+          </div>
+          <p class="src">
+            Fontes: orientação da contabilidade parceira, resumo da EC 141/2026
+            publicado pela
+            <a
+              href="https://conexaotrabalho.portaldaindustria.com.br/noticias/detalhe/trabalhista/-geral/emenda-constitucional-n-1412026/"
+              target="_blank"
+              rel="noopener"
+              >CNI</a
+            >
+            e reportagens da
+            <a
+              href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/saiba-quando-comeca-valer-o-fim-da-escala-6-por-1"
+              target="_blank"
+              rel="noopener"
+              >Agência Brasil</a
+            >. Material informativo, não substitui orientação jurídica ou
+            contábil.
+          </p>
+          <div class="row-actions">
+            <button class="btn primary" type="button" data-go="empresa">
+              Começar a simulação
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="p-empresa" hidden>
+          <div>
+            <h2>Dados da empresa</h2>
+            <p class="hint">
+              Identificação que aparece no topo da escala e no PDF.
+            </p>
+          </div>
+          <div class="box grid-form">
+            <label class="f"
+              >Nome da empresa<input id="emp-nome" data-k="nome"
+            /></label>
+            <label class="f"
+              >Ramo<select id="emp-ramo" data-k="ramo">
+                <option>Hamburgueria</option>
+                <option>Restaurante à la carte</option>
+                <option>Restaurante self-service / por quilo</option>
+                <option>Pizzaria</option>
+                <option>Lanchonete / fast food</option>
+                <option>Bar / choperia</option>
+                <option>Cafeteria / padaria</option>
+                <option>Churrascaria</option>
+                <option>Complexo esportivo / eventos</option>
+                <option>Outro</option>
+              </select></label
+            >
+            <label class="f"
+              >Cidade<input id="emp-cidade" data-k="cidade"
+            /></label>
+            <label class="f"
+              >Responsável pela escala<input id="emp-resp" data-k="responsavel"
+            /></label>
+          </div>
+          <div class="row-actions">
+            <button class="btn primary" type="button" data-go="funcionamento">
+              Próximo: dias e picos
+            </button>
+            <button class="btn ghost" type="button" id="btn-exemplo">
+              Carregar exemplo
+            </button>
+            <button class="btn ghost danger" type="button" id="btn-zerar">
+              Começar do zero
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="p-funcionamento" hidden>
+          <div>
+            <h2>Dias de funcionamento e picos</h2>
+            <p class="hint">
+              Classifique cada dia como tranquilo, normal ou de pico e informe o
+              horário de pico de cada dia. Nos dias de pico vale o mínimo de
+              pico de cada setor, e o simulador evita dar folga neles.
+            </p>
+          </div>
+          <div class="box">
+            <div class="inline-row">
+              <label class="f"
+                >Pico começa<input type="time" id="all-ini" value="19:30"
+              /></label>
+              <label class="f"
+                >Pico termina<input type="time" id="all-fim" value="22:30"
+              /></label>
+              <button class="btn sm" type="button" id="btn-all-pico">
+                Aplicar a todos os dias
+              </button>
+            </div>
+            <div class="scroll">
+              <table class="t-form t-func">
+                <thead>
+                  <tr>
+                    <th>Dia</th>
+                    <th>Abre?</th>
+                    <th>Abertura</th>
+                    <th>Fechamento</th>
+                    <th>Tipo do dia</th>
+                    <th>Pico das</th>
+                    <th>Até</th>
+                  </tr>
+                </thead>
+                <tbody id="tb-dias"></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="box grid-form">
+            <label class="f"
+              >Intervalo (almoço/janta)<select id="intervalo">
+                <option value="60">1h (jornada acima de 6h)</option>
+                <option value="90">1h30</option>
+                <option value="120">2h</option>
+              </select></label
+            >
+            <label class="f" style="align-content: start"
+              >Folga aos domingos
+              <span
+                style="
+                  display: flex;
+                  gap: 8px;
+                  align-items: center;
+                  font-weight: 500;
+                  color: var(--fg);
+                "
+                ><input type="checkbox" id="pref-dom" /> Dar preferência ao
+                domingo</span
+              ></label
+            >
+          </div>
+          <div class="row-actions">
+            <button class="btn primary" type="button" data-go="equipe">
+              Próximo: setores e equipe
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="p-equipe" hidden>
+          <div>
+            <h2>Setores</h2>
+            <p class="hint">
+              Quantas pessoas cada setor precisa no horário de pico. Marque como
+              essencial o setor que não pode ficar sem ninguém (ex.: chapa,
+              caixa).
+            </p>
+          </div>
+          <div class="box">
+            <div class="scroll">
+              <table class="t-form t-setor">
+                <thead>
+                  <tr>
+                    <th>Setor</th>
+                    <th>Mínimo em dia normal</th>
+                    <th>Mínimo em dia de pico</th>
+                    <th>Essencial</th>
+                    <th>Pessoas</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="tb-setores"></tbody>
+              </table>
+            </div>
+            <div class="row-actions">
+              <button class="btn sm" type="button" id="btn-add-setor">
+                + Adicionar setor
+              </button>
+            </div>
+          </div>
+          <div>
+            <h2>Equipe e escala atual (6x1)</h2>
+            <p class="hint">
+              Uma linha por funcionário CLT. A folga atual é mantida como uma
+              das duas novas folgas sempre que não deixar o setor descoberto. O
+              sexo é usado só para a regra de domingos.
+            </p>
+          </div>
+          <div class="box">
+            <div class="scroll">
+              <table class="t-form t-team">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Função</th>
+                    <th>Setor</th>
+                    <th>Sexo</th>
+                    <th>Folga atual</th>
+                    <th>Entrada atual</th>
+                    <th>Saída atual</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody id="tb-equipe"></tbody>
+              </table>
+              <datalist id="funcoes">
+                <option>Atendente</option>
+                <option>Garçom</option>
+                <option>Caixa</option>
+                <option>Chapeiro</option>
+                <option>Cozinheiro(a)</option>
+                <option>Auxiliar de cozinha</option>
+                <option>Pizzaiolo</option>
+                <option>Barman</option>
+                <option>Entregador</option>
+                <option>Gerente</option>
+                <option>Serviços gerais</option>
+              </datalist>
+            </div>
+            <div class="row-actions">
+              <button class="btn sm" type="button" id="btn-add">
+                + Adicionar funcionário
+              </button>
+            </div>
+          </div>
+          <div class="row-actions">
+            <button class="btn primary" type="button" data-go="beneficios">
+              Próximo: benefícios
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="p-beneficios" hidden>
+          <div>
+            <h2>Benefícios pagos por dia trabalhado</h2>
+            <p class="hint">
+              Valores que a empresa paga por dia de trabalho de cada
+              funcionário. Com um dia a menos por semana, esse custo cai, e o
+              simulador mostra a economia na escala e no PDF.
+            </p>
+          </div>
+          <div class="box grid-form">
+            <label class="f"
+              >Vale-transporte por dia (R$)<input
+                type="number"
+                min="0"
+                step="0.01"
+                id="b-vt"
+            /></label>
+            <label class="f"
+              >Refeição / alimentação por dia (R$)<input
+                type="number"
+                min="0"
+                step="0.01"
+                id="b-ref"
+            /></label>
+            <label class="f"
+              >Outro benefício (nome)<input
+                id="b-outro-nome"
+                placeholder="Ex.: ajuda de custo"
+            /></label>
+            <label class="f"
+              >Outro benefício por dia (R$)<input
+                type="number"
+                min="0"
+                step="0.01"
+                id="b-outro"
+            /></label>
+          </div>
+          <p class="hint" style="margin: 0">
+            No vale-transporte, a empresa pode descontar até 6% do salário do
+            funcionário. Use aqui o custo líquido por dia que a empresa paga.
+          </p>
+          <div class="row-actions">
+            <button class="btn primary" type="button" data-go="escala">
+              Gerar escala 5x2
+            </button>
+          </div>
+        </section>
+
+        <section class="panel" id="p-escala" hidden>
+          <div class="sheet-head">
+            <div class="who">
+              <b id="sh-nome"></b><br /><span id="sh-meta"></span>
+            </div>
+            <div class="row-actions">
+              <button class="btn" type="button" id="btn-regerar">
+                Refazer sugestão
+              </button>
+              <button class="btn" type="button" id="btn-copiar">
+                Copiar escala
+              </button>
+              <button class="btn primary" type="button" id="btn-pdf" hidden>
+                Exportar PDF
+              </button>
+            </div>
+          </div>
+          <div class="kpis" id="kpis"></div>
+          <div class="alerts" id="alerts"></div>
+          <div class="box">
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+              "
+            >
+              <h3>Escala semanal sugerida</h3>
+              <div class="legend">
+                <span
+                  ><i style="background: var(--accent-soft)"></i>Trabalha</span
+                ><span><i style="background: var(--off-bg)"></i>Folga</span
+                ><span
+                  ><i
+                    style="
+                      background: var(--accent-soft);
+                      box-shadow: inset 0 -3px 0 var(--warn);
+                    "
+                  ></i
+                  >Fora do pico</span
+                >
+              </div>
+            </div>
+            <p class="hint" style="margin: 0">
+              Toque em um dia para trocar entre trabalho e folga. Cobertura,
+              horas e benefícios são recalculados na hora.
+            </p>
+            <div class="scroll">
+              <table class="escala" id="tb-escala"></table>
+            </div>
+          </div>
+          <div class="box">
+            <h3>Cobertura por setor no pico</h3>
+            <p class="hint" style="margin: 0">
+              Pessoas do setor presentes durante todo o pico do dia, comparadas
+              ao mínimo do setor.
+            </p>
+            <div class="scroll"><table class="cov" id="tb-cov"></table></div>
+          </div>
+          <div class="box" id="box-dom">
+            <h3>Rodízio de domingos · 4 semanas</h3>
+            <p class="hint" style="margin: 0">
+              Regra geral: mulheres não trabalham dois domingos seguidos; homens
+              podem trabalhar no máximo dois seguidos e folgam no terceiro. Na
+              semana em que a pessoa folga no domingo, ela trabalha no dia da
+              outra folga.
+            </p>1
+            <div class="scroll"><table class="cov" id="tb-dom"></table></div>
+          </div>
+          <div class="box">
+            <h3>Benefícios da escala 5x2</h3>
+            <div class="ben-grid" id="ben"></div>
+          </div>
+          <div class="box">
+            <h3>Pessoas na casa por hora</h3>
+            <p class="hint" style="margin: 0">
+              Quem está no turno em cada hora (o intervalo não é descontado).
+              Células contornadas estão dentro do pico daquele dia.
+            </p>
+            <div class="scroll"><table class="heat" id="tb-heat"></table></div>
+          </div>
+          <div class="box">
+            <h3>Pontos para o treinamento</h3>
+            <ul class="notes">
+              <li>
+                A partir de <b>16/12/2026</b>: duas folgas remuneradas por
+                semana. O limite semanal cai para <b>42h</b> e, em
+                <b>dezembro de 2027</b>, para <b>40h</b>. Nenhuma redução de
+                salário é permitida. Hora extra segue com adicional de
+                <b>50%</b>.
+              </li>
+              <li>
+                O limite diário continua sendo <b>8h</b>. Trabalhar 8h24 por dia
+                (42h) exige <b>acordo ou convenção coletiva</b>. Sem acordo, a
+                escala já fica em 40h.
+              </li>
+              <li>
+                <b>Domingos:</b> mulheres não trabalham dois domingos seguidos;
+                homens trabalham no máximo dois seguidos e folgam no terceiro.
+                Use o rodízio de 4 semanas acima.
+              </li>
+              <li>
+                Escala diferente da 5x2 só com
+                <b>regime compensatório em acordo ou convenção coletiva</b>,
+                garantindo em média duas folgas por semana no mês e ao menos uma
+                folga por semana.
+              </li>
+              <li>
+                Esta escala é uma sugestão de ponto de partida. Valide com o
+                contador ou o jurídico trabalhista antes de comunicar à equipe.
+              </li>
+            </ul>
+          </div>
+          <div class="box" id="copy-fallback" hidden>
+            <h3>Texto da escala</h3>
+            <p class="hint" style="margin: 0">
+              Selecione e copie o texto abaixo para colar no WhatsApp ou na
+              planilha.
+            </p>
+            <textarea class="copybox" id="copy-text" readonly></textarea>
+          </div>
+        </section>
+
+        <footer>
+          Padroniza · Método Padroniza · Simulação baseada na Emenda
+          Constitucional nº 141/2026. A escala fica salva apenas neste
+          navegador.
+        </footer>
+      </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+    <script>
+      const DIAS = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+      const DIAS_L = [
+        "Segunda",
+        "Terça",
+        "Quarta",
+        "Quinta",
+        "Sexta",
+        "Sábado",
+        "Domingo",
+      ];
+      const TIPOS = { tranq: "Tranquilo", normal: "Normal", pico: "Pico" };
+      const TW = { tranq: 1, normal: 2, pico: 3 };
+      const KEY = "padroniza-escala-5x2-v2";
+      const SEMANAS_MES = 52 / 12;
+      let uid = 1,
+        sid = 1;
+
+      function exemplo() {
+        uid = 1;
+        sid = 1;
+        const st = (nome, minNormal, minPico, essencial) => ({
+          id: sid++,
+          nome,
+          minNormal,
+          minPico,
+          essencial,
+        });
+        const setores = [
+          st("Cozinha", 2, 3, true),
+          st("Chapa", 1, 2, true),
+          st("Atendimento", 1, 2, false),
+          st("Caixa", 1, 1, true),
+          st("Delivery", 1, 1, false),
+          st("Gerência", 0, 1, false),
+        ];
+        const p = (nome, funcao, setor, folga, ent, sai) => ({
+          id: uid++,
+          nome,
+          funcao,
+          setor,
+          folgaAtual: folga,
+          entrada: ent,
+          saida: sai,
+        });
+        const d = (aberto, abre, fecha, tipo, pi, pf) => ({
+          aberto,
+          abre,
+          fecha,
+          tipo,
+          picoIni: pi,
+          picoFim: pf,
+        });
+        return {
+          v: 2,
+          empresa: {
+            nome: "Hamburgueria Exemplo (dados fictícios)",
+            ramo: "Hamburgueria",
+            cidade: "Dourados-MS",
+            responsavel: "",
+          },
+          fase: 40,
+          intervalo: 60,
+          prefDomingo: false,
+          dias: [
+            d(false, "17:00", "00:00", "tranq", "19:30", "22:00"),
+            d(true, "17:00", "00:00", "tranq", "19:30", "22:00"),
+            d(true, "17:00", "00:00", "tranq", "19:30", "22:00"),
+            d(true, "17:00", "00:00", "normal", "19:30", "22:00"),
+            d(true, "17:00", "00:30", "pico", "19:00", "23:00"),
+            d(true, "17:00", "00:30", "pico", "19:00", "23:00"),
+            d(true, "17:00", "00:00", "pico", "18:30", "22:30"),
+          ],
+          setores,
+          equipe: [
+            p("Carla", "Cozinheiro(a)", "Cozinha", 0, "15:00", "23:20"),
+            p(
+              "Gabriela",
+              "Auxiliar de cozinha",
+              "Cozinha",
+              0,
+              "15:00",
+              "23:20",
+            ),
+            p("Rita", "Auxiliar de cozinha", "Cozinha", 0, "15:00", "23:20"),
+            p("Bruno", "Chapeiro", "Chapa", 0, "16:00", "00:20"),
+            p("Diego", "Chapeiro", "Chapa", 0, "16:00", "00:20"),
+            p("Ana", "Atendente", "Atendimento", 0, "16:00", "00:20"),
+            p("Felipe", "Atendente", "Atendimento", 0, "16:30", "00:50"),
+            p("Elaine", "Caixa", "Caixa", 0, "16:30", "00:50"),
+            p("Joana", "Caixa", "Caixa", 0, "16:30", "00:50"),
+            p("Igor", "Entregador", "Delivery", 0, "18:00", "00:30"),
+            p("Hugo", "Gerente", "Gerência", 0, "15:00", "23:20"),
+          ].map((x) => ({
+            ...x,
+            sexo:
+              {
+                Carla: "F",
+                Gabriela: "F",
+                Rita: "F",
+                Ana: "F",
+                Elaine: "F",
+                Joana: "F",
+              }[x.nome] || "M",
+          })),
+          beneficios: { vt: 9, ref: 18, outro: 0, outroNome: "" },
+          ajustes: {},
+        };
+      }
+      function vazio() {
+        uid = 1;
+        sid = 1;
+        return {
+          v: 2,
+          empresa: {
+            nome: "",
+            ramo: "Restaurante à la carte",
+            cidade: "",
+            responsavel: "",
+          },
+          fase: 40,
+          intervalo: 60,
+          prefDomingo: false,
+          dias: DIAS.map(() => ({
+            aberto: true,
+            abre: "11:00",
+            fecha: "23:00",
+            tipo: "normal",
+            picoIni: "12:00",
+            picoFim: "14:00",
+          })),
+          setores: [
+            {
+              id: sid++,
+              nome: "Cozinha",
+              minNormal: 1,
+              minPico: 2,
+              essencial: true,
+            },
+            {
+              id: sid++,
+              nome: "Salão",
+              minNormal: 1,
+              minPico: 2,
+              essencial: false,
+            },
+          ],
+          equipe: [
+            {
+              id: uid++,
+              nome: "",
+              funcao: "",
+              setor: "Cozinha",
+              sexo: "",
+              folgaAtual: 0,
+              entrada: "11:00",
+              saida: "19:20",
+            },
+          ],
+          beneficios: { vt: 0, ref: 0, outro: 0, outroNome: "" },
+          ajustes: {},
+        };
+      }
+      let S;
+      try {
+        const raw = localStorage.getItem(KEY);
+        if (raw) {
+          S = JSON.parse(raw);
+          if (S.v !== 2) S = null;
+        }
+      } catch (e) {
+        S = null;
+      }
+      if (!S) S = exemplo();
+      uid = Math.max(0, ...S.equipe.map((e) => e.id)) + 1;
+      sid = Math.max(0, ...S.setores.map((e) => e.id)) + 1;
+      function save() {
+        try {
+          localStorage.setItem(KEY, JSON.stringify(S));
+        } catch (e) {}
+      }
+
+      const $ = (s) => document.querySelector(s);
+      const esc = (s) =>
+        String(s ?? "").replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      const toMin = (t) => {
+        if (!t) return 0;
+        const [h, m] = t.split(":").map(Number);
+        return h * 60 + (m || 0);
+      };
+      const fmt = (m) => {
+        m = ((Math.round(m) % 1440) + 1440) % 1440;
+        return (
+          String(Math.floor(m / 60)).padStart(2, "0") +
+          ":" +
+          String(m % 60).padStart(2, "0")
+        );
+      };
+      const fmtH = (m) => {
+        const h = Math.floor(m / 60),
+          r = Math.round(m % 60);
+        return h + "h" + (r ? String(r).padStart(2, "0") : "00");
+      };
+      const brl = (v) =>
+        v.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+          maximumFractionDigits: 0,
+        });
+      function janelaDia(d) {
+        const a = toMin(d.abre);
+        let f = toMin(d.fecha);
+        if (f <= a) f += 1440;
+        return [a, f];
+      }
+      function picoDia(d) {
+        const [a] = janelaDia(d);
+        let pi = toMin(d.picoIni),
+          pf = toMin(d.picoFim);
+        if (pi < a - 180) pi += 1440;
+        if (pf <= pi) pf += 1440;
+        return [pi, pf];
+      }
+      function jornadaMin() {
+        return Math.round((S.fase / 5) * 60);
+      }
+      const setorCfg = (nome) =>
+        S.setores.find((s) => s.nome === nome) || {
+          nome: nome || "Sem setor",
+          minNormal: 0,
+          minPico: 0,
+          essencial: false,
+          id: 0,
+        };
+      const need = (cfg, d) =>
+        !S.dias[d].aberto
+          ? 0
+          : (S.dias[d].tipo === "pico" ? +cfg.minPico : +cfg.minNormal) || 0;
+      const setorNomes = () => {
+        const n = S.setores.map((s) => s.nome);
+        S.equipe.forEach((p) => {
+          if (p.setor && !n.includes(p.setor)) n.push(p.setor);
+        });
+        if (S.equipe.some((p) => !p.setor)) n.push("");
+        return n;
+      };
+
+      /* ---------- tabs ---------- */
+      const TABS = [
+        "lei",
+        "empresa",
+        "funcionamento",
+        "equipe",
+        "beneficios",
+        "escala",
+      ];
+      function show(tab) {
+        if (!TABS.includes(tab)) tab = "lei";
+        TABS.forEach((t) => {
+          $("#p-" + t).hidden = t !== tab;
+        });
+        document
+          .querySelectorAll("[data-tab]")
+          .forEach((b) =>
+            b.setAttribute("aria-selected", b.dataset.tab === tab),
+          );
+        if (tab === "escala") renderEscala();
+        if (tab === "equipe") renderSetores();
+        if (location.hash.slice(1) !== tab)
+          history.replaceState(null, "", "#" + tab);
+      }
+      document.querySelectorAll("[data-tab]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            show(b.dataset.tab);
+            window.scrollTo({ top: 0 });
+          }),
+      );
+      document.querySelectorAll("[data-go]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            show(b.dataset.go);
+            window.scrollTo({ top: 0 });
+          }),
+      );
+      window.addEventListener("hashchange", () => show(location.hash.slice(1)));
+
+      /* ---------- lei ---------- */
+      function renderLei() {
+        const hoje = new Date();
+        hoje.setHours(0, 0, 0, 0);
+        const d1 = new Date(2026, 11, 16),
+          d2 = new Date(2027, 11, 16);
+        const dias = (d) => Math.round((d - hoje) / 864e5);
+        const el = $("#count");
+        if (dias(d1) > 0) {
+          el.innerHTML = `<span class="cap">Contagem regressiva</span><span class="big">${dias(d1)} dias</span><span class="lab">para as duas folgas semanais virarem obrigação, em 16/12/2026. Quem se adequar antes chega em dezembro sem correria.</span>`;
+          $("#tl-1").classList.add("now");
+        } else if (dias(d2) > 0) {
+          el.innerHTML = `<span class="cap">Em vigor</span><span class="big">${dias(d2)} dias</span><span class="lab">para o limite definitivo de 40h semanais, em dezembro de 2027.</span>`;
+          $("#tl-2").classList.add("now");
+        } else
+          el.innerHTML = `<span class="cap">Em vigor</span><span class="big">40h</span><span class="lab">Limite definitivo de 40h semanais, com duas folgas.</span>`;
+      }
+
+      /* ---------- fase ---------- */
+      function renderFase() {
+        document
+          .querySelectorAll("[data-fase]")
+          .forEach((b) =>
+            b.setAttribute("aria-pressed", String(+b.dataset.fase === S.fase)),
+          );
+      }
+      document.querySelectorAll("[data-fase]").forEach(
+        (b) =>
+          (b.onclick = () => {
+            S.fase = +b.dataset.fase;
+            save();
+            renderFase();
+            renderEscala();
+          }),
+      );
+
+      /* ---------- empresa ---------- */
+      function renderEmpresa() {
+        document.querySelectorAll("#p-empresa [data-k]").forEach((el) => {
+          el.value = S.empresa[el.dataset.k] || "";
+          el.oninput = () => {
+            S.empresa[el.dataset.k] = el.value;
+            save();
+          };
+        });
+      }
+
+      /* ---------- dias e picos ---------- */
+      function renderFunc() {
+        $("#intervalo").value = String(S.intervalo);
+        $("#pref-dom").checked = !!S.prefDomingo;
+        $("#intervalo").onchange = (e) => {
+          S.intervalo = +e.target.value;
+          changed();
+        };
+        $("#pref-dom").onchange = (e) => {
+          S.prefDomingo = e.target.checked;
+          S.ajustes = {};
+          changed();
+        };
+        $("#tb-dias").innerHTML = S.dias
+          .map(
+            (d, i) => `<tr>
+    <td><b>${DIAS_L[i]}</b></td>
+    <td><input type="checkbox" id="d-ab-${i}" data-i="${i}" data-f="aberto" ${d.aberto ? "checked" : ""} aria-label="${DIAS_L[i]} aberto"></td>
+    <td><input type="time" id="d-abre-${i}" data-i="${i}" data-f="abre" value="${d.abre}"></td>
+    <td><input type="time" id="d-fecha-${i}" data-i="${i}" data-f="fecha" value="${d.fecha}"></td>
+    <td><select id="d-tipo-${i}" data-i="${i}" data-f="tipo">${Object.entries(
+      TIPOS,
+    )
+      .map(
+        ([k, v]) =>
+          `<option value="${k}" ${d.tipo === k ? "selected" : ""}>${v}</option>`,
+      )
+      .join("")}</select></td>
+    <td><input type="time" id="d-pi-${i}" data-i="${i}" data-f="picoIni" value="${d.picoIni}"></td>
+    <td><input type="time" id="d-pf-${i}" data-i="${i}" data-f="picoFim" value="${d.picoFim}"></td></tr>`,
+          )
+          .join("");
+        $("#tb-dias")
+          .querySelectorAll("[data-f]")
+          .forEach(
+            (el) =>
+              (el.onchange = () => {
+                const d = S.dias[+el.dataset.i],
+                  f = el.dataset.f;
+                d[f] = f === "aberto" ? el.checked : el.value;
+                if (f === "aberto" || f === "tipo") S.ajustes = {};
+                changed();
+              }),
+          );
+      }
+      $("#btn-all-pico").onclick = () => {
+        const a = $("#all-ini").value,
+          b = $("#all-fim").value;
+        if (!a || !b) return;
+        S.dias.forEach((d) => {
+          d.picoIni = a;
+          d.picoFim = b;
+        });
+        save();
+        renderFunc();
+        renderEscala();
+        toast("Pico aplicado a todos os dias");
+      };
+
+      /* ---------- setores ---------- */
+      function renderSetores() {
+        const cont = (n) => S.equipe.filter((p) => p.setor === n).length;
+        $("#tb-setores").innerHTML = S.setores
+          .map(
+            (s) => `<tr>
+    <td><input id="s-nome-${s.id}" data-sid="${s.id}" data-f="nome" value="${esc(s.nome)}" placeholder="Ex.: Cozinha"></td>
+    <td><input type="number" min="0" max="99" id="s-mn-${s.id}" data-sid="${s.id}" data-f="minNormal" value="${s.minNormal}" style="max-width:100px"></td>
+    <td><input type="number" min="0" max="99" id="s-mp-${s.id}" data-sid="${s.id}" data-f="minPico" value="${s.minPico}" style="max-width:100px"></td>
+    <td><label style="display:flex;gap:8px;align-items:center"><input type="checkbox" id="s-es-${s.id}" data-sid="${s.id}" data-f="essencial" ${s.essencial ? "checked" : ""}> Não pode ficar sem</label></td>
+    <td><span class="pill ${cont(s.nome) ? "nt" : "warn"}">${cont(s.nome)} pessoa(s)</span></td>
+    <td><button class="icon-btn" type="button" data-sdel="${s.id}" aria-label="Remover setor ${esc(s.nome)}">×</button></td></tr>`,
+          )
+          .join("");
+        $("#tb-setores")
+          .querySelectorAll("[data-f]")
+          .forEach((el) => {
+            el.onchange = () => {
+              const s = S.setores.find((x) => x.id === +el.dataset.sid);
+              const f = el.dataset.f;
+              if (f === "nome") {
+                const old = s.nome;
+                s.nome = el.value.trim();
+                S.equipe.forEach((p) => {
+                  if (p.setor === old) p.setor = s.nome;
+                });
+                renderEquipe();
+              } else if (f === "essencial") s.essencial = el.checked;
+              else s[f] = Math.max(0, +el.value || 0);
+              S.ajustes = {};
+              save();
+              renderSetores();
+            };
+          });
+        $("#tb-setores")
+          .querySelectorAll("[data-sdel]")
+          .forEach(
+            (b) =>
+              (b.onclick = () => {
+                const s = S.setores.find((x) => x.id === +b.dataset.sdel);
+                S.setores = S.setores.filter((x) => x !== s);
+                S.equipe.forEach((p) => {
+                  if (p.setor === s.nome) p.setor = "";
+                });
+                S.ajustes = {};
+                save();
+                renderSetores();
+                renderEquipe();
+              }),
+          );
+      }
+      $("#btn-add-setor").onclick = () => {
+        S.setores.push({
+          id: sid++,
+          nome: "",
+          minNormal: 1,
+          minPico: 1,
+          essencial: false,
+        });
+        save();
+        renderSetores();
+        renderEquipe();
+        const el = $("#tb-setores tr:last-child input");
+        el && el.focus();
+      };
+
+      /* ---------- equipe ---------- */
+      function renderEquipe() {
+        const opts = (sel) =>
+          `<option value="" ${!sel ? "selected" : ""}>Escolha</option>` +
+          S.setores
+            .filter((s) => s.nome)
+            .map(
+              (s) =>
+                `<option ${s.nome === sel ? "selected" : ""}>${esc(s.nome)}</option>`,
+            )
+            .join("");
+        $("#tb-equipe").innerHTML = S.equipe
+          .map(
+            (p, i) => `<tr>
+    <td style="color:var(--muted);font:600 12px var(--f-mono)">${i + 1}</td>
+    <td><input id="e-nome-${p.id}" data-id="${p.id}" data-f="nome" value="${esc(p.nome)}" placeholder="Nome"></td>
+    <td><input id="e-func-${p.id}" data-id="${p.id}" data-f="funcao" value="${esc(p.funcao)}" list="funcoes" placeholder="Função"></td>
+    <td><select id="e-setor-${p.id}" data-id="${p.id}" data-f="setor">${opts(p.setor)}</select></td>
+    <td><select id="e-sexo-${p.id}" data-id="${p.id}" data-f="sexo" aria-label="Sexo de ${esc(p.nome)}"><option value="" ${!p.sexo ? "selected" : ""}>—</option><option value="F" ${p.sexo === "F" ? "selected" : ""}>Feminino</option><option value="M" ${p.sexo === "M" ? "selected" : ""}>Masculino</option></select></td>
+    <td><select id="e-folga-${p.id}" data-id="${p.id}" data-f="folgaAtual">${DIAS_L.map((n, d) => `<option value="${d}" ${p.folgaAtual === d ? "selected" : ""}>${n}</option>`).join("")}</select></td>
+    <td><input type="time" id="e-ent-${p.id}" data-id="${p.id}" data-f="entrada" value="${p.entrada}"></td>
+    <td><input type="time" id="e-sai-${p.id}" data-id="${p.id}" data-f="saida" value="${p.saida || ""}"></td>
+    <td><button class="icon-btn" type="button" data-del="${p.id}" aria-label="Remover ${esc(p.nome)}">×</button></td></tr>`,
+          )
+          .join("");
+        $("#tb-equipe")
+          .querySelectorAll("[data-f]")
+          .forEach((el) => {
+            const upd = () => {
+              const p = S.equipe.find((x) => x.id === +el.dataset.id);
+              const f = el.dataset.f;
+              p[f] = f === "folgaAtual" ? +el.value : el.value;
+              if (f === "folgaAtual" || f === "setor") {
+                S.ajustes = {};
+              }
+              save();
+              if (f === "sexo") renderEscala();
+              if (f === "setor") renderSetores();
+            };
+            el.oninput = upd;
+            el.onchange = upd;
+          });
+        $("#tb-equipe")
+          .querySelectorAll("[data-del]")
+          .forEach(
+            (b) =>
+              (b.onclick = () => {
+                S.equipe = S.equipe.filter((p) => p.id !== +b.dataset.del);
+                S.ajustes = {};
+                save();
+                renderEquipe();
+                renderSetores();
+              }),
+          );
+      }
+      $("#btn-add").onclick = () => {
+        const last = S.equipe[S.equipe.length - 1];
+        S.equipe.push({
+          id: uid++,
+          nome: "",
+          funcao: last?.funcao || "",
+          setor: last?.setor || "",
+          sexo: "",
+          folgaAtual: last?.folgaAtual ?? 0,
+          entrada: last?.entrada || "11:00",
+          saida: last?.saida || "",
+        });
+        S.ajustes = {};
+        save();
+        renderEquipe();
+        renderSetores();
+        const el = $("#tb-equipe tr:last-child input");
+        el && el.focus();
+      };
+
+      /* ---------- benefícios ---------- */
+      function renderBen() {
+        const B = S.beneficios;
+        [
+          ["#b-vt", "vt"],
+          ["#b-ref", "ref"],
+          ["#b-outro", "outro"],
+        ].forEach(([s, k]) => {
+          const el = $(s);
+          el.value = B[k] || "";
+          el.oninput = () => {
+            B[k] = Math.max(0, +el.value || 0);
+            save();
+          };
+        });
+        $("#b-outro-nome").value = B.outroNome || "";
+        $("#b-outro-nome").oninput = (e) => {
+          B.outroNome = e.target.value;
+          save();
+        };
+      }
+
+      /* ---------- motor da escala ---------- */
+      function sugerirFolgas() {
+        const abertos = S.dias.map((d) => d.aberto);
+        const fechados = [0, 1, 2, 3, 4, 5, 6].filter((d) => !abertos[d]);
+        const offSet = {},
+          offTot = [0, 0, 0, 0, 0, 0, 0],
+          tam = {},
+          out = {};
+        S.equipe.forEach((p) => {
+          tam[p.setor] = (tam[p.setor] || 0) + 1;
+        });
+        // setores mais apertados primeiro (menos folga sobrando)
+        const folgaSobra = (p) => {
+          const c = setorCfg(p.setor);
+          return (
+            (tam[p.setor] || 0) - Math.max(+c.minPico || 0, +c.minNormal || 0)
+          );
+        };
+        const ordem = S.equipe
+          .slice()
+          .sort((a, b) => folgaSobra(a) - folgaSobra(b));
+        ordem.forEach((p) => {
+          const cfg = setorCfg(p.setor);
+          const f =
+            offSet[p.setor] || (offSet[p.setor] = [0, 0, 0, 0, 0, 0, 0]);
+          const quebra = (d) => (tam[p.setor] || 0) - f[d] - 1 < need(cfg, d);
+          let folgas = fechados.slice(0, Math.max(2, fechados.length));
+          const fa = p.folgaAtual;
+          if (folgas.length < 2 && abertos[fa] && !folgas.includes(fa)) {
+            if (!quebra(fa) || (!cfg.essencial && S.dias[fa].tipo !== "pico"))
+              folgas.push(fa);
+          }
+          while (folgas.length < 2) {
+            let best = -1,
+              bs = 1e9;
+            for (let d = 0; d < 7; d++) {
+              if (!abertos[d] || folgas.includes(d)) continue;
+              let s = TW[S.dias[d].tipo] * 10 + f[d] * 8 + offTot[d] * 2;
+              if (
+                folgas.some(
+                  (x) => Math.abs(x - d) === 1 || Math.abs(x - d) === 6,
+                )
+              )
+                s -= 4;
+              if (quebra(d)) s += cfg.essencial ? 200 : 60;
+              if (S.prefDomingo && d === 6) s -= 18;
+              if (s < bs) {
+                bs = s;
+                best = d;
+              }
+            }
+            if (best < 0) break;
+            folgas.push(best);
+          }
+          folgas.forEach((d) => {
+            if (abertos[d]) {
+              f[d]++;
+              offTot[d]++;
+            }
+          });
+          out[p.id] = folgas;
+        });
+        return out;
+      }
+      function turno(p, d) {
+        const dia = S.dias[d];
+        const [a, fe] = janelaDia(dia);
+        const dur = jornadaMin() + S.intervalo;
+        let st = toMin(p.entrada);
+        if (st < a - 360) st += 1440;
+        if (st + dur > fe + 30) st = fe + 30 - dur;
+        st = Math.round(st / 5) * 5;
+        return [st, st + dur];
+      }
+      function calcular() {
+        const sug = sugerirFolgas();
+        const folgas = {};
+        S.equipe.forEach(
+          (p) => (folgas[p.id] = (S.ajustes[p.id] || sug[p.id] || []).slice()),
+        );
+        const nomes = setorNomes();
+        const ordem = S.equipe
+          .slice()
+          .sort((a, b) => nomes.indexOf(a.setor) - nomes.indexOf(b.setor));
+        const linhas = ordem.map((p) => {
+          const dias = S.dias.map((dia, d) => {
+            if (!dia.aberto) return { tipo: "fechado" };
+            if (folgas[p.id].includes(d)) return { tipo: "folga" };
+            const [st, en] = turno(p, d);
+            const [pi, pf] = picoDia(dia);
+            return { tipo: "trab", st, en, pico: st <= pi && en >= pf };
+          });
+          const trab = dias.filter((x) => x.tipo === "trab").length;
+          return {
+            p,
+            dias,
+            trab,
+            folgasN: 7 - trab,
+            horas: trab * jornadaMin(),
+          };
+        });
+        const setores = nomes.map((nome) => {
+          const cfg = setorCfg(nome);
+          const ls = linhas.filter((l) => l.p.setor === nome);
+          const dias = S.dias.map((dia, d) => {
+            if (!dia.aberto) return null;
+            const pico = ls.filter(
+              (l) => l.dias[d].tipo === "trab" && l.dias[d].pico,
+            ).length;
+            const n = need(cfg, d);
+            return { pico, min: n, falta: Math.max(0, n - pico) };
+          });
+          const falta = dias.reduce((s, c) => s + (c ? c.falta : 0), 0);
+          return {
+            nome,
+            cfg,
+            pessoas: ls.length,
+            dias,
+            falta,
+            reforco: Math.ceil(falta / 5),
+          };
+        });
+        const total = S.dias.map((dia, d) => {
+          if (!dia.aberto) return null;
+          return {
+            na: linhas.filter((l) => l.dias[d].tipo === "trab").length,
+            pico: linhas.filter(
+              (l) => l.dias[d].tipo === "trab" && l.dias[d].pico,
+            ).length,
+            min: setores.reduce(
+              (s, x) => s + (x.dias[d] ? x.dias[d].min : 0),
+              0,
+            ),
+          };
+        });
+        // benefícios
+        const abertos = S.dias.filter((d) => d.aberto).length;
+        const diasAntes = Math.min(6, abertos);
+        const B = S.beneficios,
+          porDia = (+B.vt || 0) + (+B.ref || 0) + (+B.outro || 0);
+        const diasDepois = linhas.reduce((s, l) => s + l.trab, 0);
+        const diasAntesTot = diasAntes * linhas.length;
+        const econSem = (diasAntesTot - diasDepois) * porDia;
+        const ben = {
+          porDia,
+          diasAntes,
+          econSem,
+          econMes: econSem * SEMANAS_MES,
+          econAno: econSem * 52,
+          folgasAno: Math.max(
+            0,
+            7 - diasAntes > 0 ? (2 - (7 - diasAntes)) * 52 : 52,
+          ),
+          horasMenos: 44 - S.fase,
+        };
+        return { linhas, setores, total, folgas, ben };
+      }
+
+      /* ---------- rodízio de domingos ---------- */
+      const SEMANAS = 4;
+      function rodizio() {
+        if (!S.dias[6].aberto) return null;
+        const cont = {};
+        const linhas = R.linhas
+          .filter((l) => l.dias[6].tipo === "trab")
+          .map((l) => {
+            const per = l.p.sexo === "M" ? 3 : 2;
+            const k = (l.p.setor || "") + "|" + per;
+            cont[k] = cont[k] || 0;
+            const off = cont[k]++ % per;
+            const fol = (R.folgas[l.p.id] || []).filter(
+              (d) => d !== 6 && S.dias[d].aberto,
+            );
+            const troca = fol.length ? fol[fol.length - 1] : null;
+            const semanas = Array.from(
+              { length: SEMANAS },
+              (_, w) => (w + off) % per === per - 1,
+            );
+            return { l, per, troca, semanas };
+          });
+        const cov = Array.from({ length: SEMANAS }, (_, w) =>
+          R.setores.map((st) => {
+            const n = need(st.cfg, 6);
+            const pico = linhas.filter(
+              (r) =>
+                r.l.p.setor === st.nome && !r.semanas[w] && r.l.dias[6].pico,
+            ).length;
+            return {
+              nome: st.nome,
+              ess: st.cfg.essencial,
+              pico,
+              min: n,
+              falta: Math.max(0, n - pico),
+            };
+          }),
+        );
+        return { linhas, cov };
+      }
+
+      /* ---------- render escala ---------- */
+      let R,
+        RD = null;
+      function renderEscala() {
+        if ($("#p-escala").hidden) return;
+        R = calcular();
+        const E = S.empresa;
+        $("#sh-nome").textContent = E.nome || "Empresa sem nome";
+        $("#sh-meta").textContent = [
+          E.ramo,
+          E.cidade,
+          `Escala 5x2 · ${S.fase}h/semana${S.fase === 42 ? " (com acordo coletivo)" : ""} · ${fmtH(jornadaMin())} por dia + ${fmtH(S.intervalo)} de intervalo`,
+        ]
+          .filter(Boolean)
+          .join(" · ");
+        const n = S.equipe.length;
+        const antes = n * 44,
+          depois = R.linhas.reduce((s, l) => s + l.horas, 0) / 60;
+        const furos = [];
+        R.setores.forEach((s) =>
+          s.dias.forEach((c, d) => {
+            if (c && c.falta) furos.push({ s, d, c });
+          }),
+        );
+        const furosEss = furos.filter((x) => x.s.cfg.essencial);
+        const reforco = R.setores.reduce((t, s) => t + s.reforco, 0);
+        $("#kpis").innerHTML = `
+    <div class="kpi"><div class="l">Equipe CLT</div><div class="v">${n}</div><div class="s">${R.setores.filter((s) => s.pessoas).length} setores</div></div>
+    <div class="kpi"><div class="l">Horas/semana</div><div class="v">${Math.round(depois)}h</div><div class="s">antes: ${antes}h na 6x1 (−${Math.round(antes - depois)}h)</div></div>
+    <div class="kpi ${furosEss.length ? "alert" : ""}"><div class="l">Setores descobertos</div><div class="v">${furos.length}</div><div class="s">${furos.length ? `${furosEss.length} em setor essencial` : "todos cobertos no pico"}</div></div>
+    <div class="kpi ${reforco ? "alert" : ""}"><div class="l">Reforço estimado</div><div class="v">${reforco}</div><div class="s">${
+      reforco
+        ? R.setores
+            .filter((s) => s.reforco)
+            .map((s) => `${s.reforco} ${s.nome || "sem setor"}`)
+            .join(", ")
+        : "sem necessidade de contratar"
+    }</div></div>
+    <div class="kpi ${R.ben.econMes > 0 ? "good" : ""}"><div class="l">Economia em benefícios</div><div class="v">${R.ben.porDia ? brl(R.ben.econMes) : "—"}</div><div class="s">${R.ben.porDia ? "por mês, com menos dias trabalhados" : "preencha na aba Benefícios"}</div></div>`;
+
+        const al = [];
+        R.linhas.forEach((l) => {
+          if (l.folgasN !== 2 && l.trab)
+            al.push(
+              `<div class="alert-row">${esc(l.p.nome || "Sem nome")} está com ${l.folgasN} folga(s) na semana. Na 5x2 são exatamente 2.</div>`,
+            );
+          if (l.horas / 60 > S.fase + 0.01)
+            al.push(
+              `<div class="alert-row">${esc(l.p.nome || "Sem nome")} passa de ${S.fase}h semanais.</div>`,
+            );
+          if (!l.p.setor)
+            al.push(
+              `<div class="alert-row warn">${esc(l.p.nome || "Sem nome")} está sem setor. Defina na aba Setores e equipe.</div>`,
+            );
+        });
+        const abertos = S.dias.filter((d) => d.aberto).length;
+        if (S.fase === 42)
+          al.push(
+            `<div class="alert-row warn">Esta simulação usa 8h24 por dia (42h). Isso só vale com acordo ou convenção coletiva até dez/2027. Sem acordo, use 40h no topo da página.</div>`,
+          );
+        if (abertos < 5)
+          al.push(
+            `<div class="alert-row warn">A casa abre só ${abertos} dia(s). Com menos de 5 dias, a jornada diária precisa ser redistribuída por acordo coletivo.</div>`,
+          );
+        furosEss.forEach(({ s, d, c }) =>
+          al.push(
+            `<div class="alert-row">${esc(s.nome)} (essencial) na ${DIAS_L[d].toLowerCase()}: ${c.pico} de ${c.min} no pico.${c.pico === 0 ? " O setor fica sem ninguém." : ""}</div>`,
+          ),
+        );
+        furos
+          .filter((x) => !x.s.cfg.essencial)
+          .forEach(({ s, d, c }) =>
+            al.push(
+              `<div class="alert-row warn">${esc(s.nome || "Sem setor")} na ${DIAS_L[d].toLowerCase()}: ${c.pico} de ${c.min} no pico.</div>`,
+            ),
+          );
+        if (!al.length)
+          al.push(
+            `<div class="alert-row ok">Escala válida: todos com 2 folgas, dentro de ${S.fase}h e todos os setores cobertos no pico.</div>`,
+          );
+        $("#alerts").innerHTML = al.join("");
+
+        const tipoTag = (d) =>
+          S.dias[d].aberto
+            ? `<span class="daytype ${S.dias[d].tipo}">${TIPOS[S.dias[d].tipo].toUpperCase()}</span>`
+            : `<span class="daytype normal">FECHADO</span>`;
+        const head = `<thead><tr><th>Funcionário</th>${DIAS.map((d, i) => `<th class="day">${d}${tipoTag(i)}</th>`).join("")}<th>Horas</th></tr></thead>`;
+        let body = "",
+          cur = null;
+        R.linhas.forEach((l) => {
+          if (l.p.setor !== cur) {
+            cur = l.p.setor;
+            const c = setorCfg(cur);
+            body += `<tr class="grp"><td colspan="9">${esc(cur || "Sem setor")}${c.essencial ? '<span class="tag-ess">essencial</span>' : ""}<span class="req">mínimo ${c.minNormal} em dia normal · ${c.minPico} em dia de pico</span></td></tr>`;
+          }
+          body += `<tr><td class="name"><b>${esc(l.p.nome || "Sem nome")}</b><span>${esc(l.p.funcao || "—")} · folga 6x1: ${DIAS[l.p.folgaAtual]}</span></td>${l.dias
+            .map((c, d) => {
+              if (c.tipo === "fechado")
+                return `<td class="cell"><button type="button" class="closed" disabled>—</button></td>`;
+              if (c.tipo === "folga")
+                return `<td class="cell"><button type="button" class="off" data-p="${l.p.id}" data-d="${d}" aria-label="${esc(l.p.nome)} ${DIAS_L[d]}: folga. Trocar para trabalho">FOLGA</button></td>`;
+              return `<td class="cell"><button type="button" class="${c.pico ? "" : "nopico"}" data-p="${l.p.id}" data-d="${d}" aria-label="${esc(l.p.nome)} ${DIAS_L[d]}: ${fmt(c.st)} às ${fmt(c.en)}. Trocar para folga">${fmt(c.st)}–${fmt(c.en)}</button></td>`;
+            })
+            .join(
+              "",
+            )}<td class="h" style="color:${l.horas / 60 > S.fase + 0.01 ? "var(--bad)" : "inherit"}">${fmtH(l.horas)}</td></tr>`;
+        });
+        const foot = `<tfoot><tr><td>Total no pico / mínimo</td>${R.total.map((c) => (c ? `<td><span class="pill ${c.pico < c.min ? "bad" : "ok"}">${c.pico} / ${c.min}</span></td>` : "<td>—</td>")).join("")}<td></td></tr>
+    <tr><td>Trabalhando no dia</td>${R.total.map((c) => `<td>${c ? c.na : "—"}</td>`).join("")}<td></td></tr></tfoot>`;
+        $("#tb-escala").innerHTML = head + "<tbody>" + body + "</tbody>" + foot;
+        $("#tb-escala")
+          .querySelectorAll("button[data-p]")
+          .forEach(
+            (b) =>
+              (b.onclick = () => {
+                const id = +b.dataset.p,
+                  d = +b.dataset.d;
+                const cur = R.folgas[id].slice();
+                const i = cur.indexOf(d);
+                if (i >= 0) cur.splice(i, 1);
+                else cur.push(d);
+                S.ajustes[id] = cur;
+                save();
+                renderEscala();
+              }),
+          );
+
+        $("#tb-cov").innerHTML =
+          `<thead><tr><th>Setor</th>${DIAS.map((d, i) => `<th>${d}${tipoTag(i)}</th>`).join("")}<th>Reforço</th></tr></thead><tbody>${R.setores
+            .map(
+              (s) =>
+                `<tr><td><b>${esc(s.nome || "Sem setor")}</b>${s.cfg.essencial ? '<span class="tag-ess">essencial</span>' : ""}<br><span style="font-size:11px;color:var(--muted)">${s.pessoas} pessoa(s)</span></td>${s.dias
+                  .map((c) =>
+                    !c
+                      ? "<td>—</td>"
+                      : c.min === 0
+                        ? `<td><span class="pill nt">${c.pico} / 0</span></td>`
+                        : `<td><span class="pill ${c.falta ? (s.cfg.essencial ? "bad" : "warn") : "ok"}">${c.pico} / ${c.min}</span></td>`,
+                  )
+                  .join(
+                    "",
+                  )}<td>${s.reforco ? `<span class="pill ${s.cfg.essencial ? "bad" : "warn"}">+${s.reforco}</span>` : "—"}</td></tr>`,
+            )
+            .join("")}</tbody>`;
+
+        renderBeneficios();
+        renderHeat();
+        renderDomingos();
+      }
+      function renderDomingos() {
+        const D = rodizio();
+        RD = D;
+        $("#box-dom").hidden = !D || !D.linhas.length;
+        if (!D || !D.linhas.length) return;
+        const semN = [...Array(SEMANAS).keys()];
+        const body = D.linhas
+          .map(
+            (r) =>
+              `<tr><td><b>${esc(r.l.p.nome || "Sem nome")}</b><br><span style="font-size:11px;color:var(--muted)">${esc(r.l.p.setor || "Sem setor")} · ${r.l.p.sexo === "M" ? "máx. 2 domingos seguidos" : r.l.p.sexo === "F" ? "domingo sim, domingo não" : "sexo não informado"}</span></td>${r.semanas
+                .map((off) =>
+                  off
+                    ? `<td><span class="pill ok">Folga</span><br><span style="font-size:11px;color:var(--muted)">${r.troca != null ? "trabalha " + DIAS[r.troca] : "sem troca"}</span></td>`
+                    : `<td><span class="pill nt">Trabalha</span></td>`,
+                )
+                .join("")}</tr>`,
+          )
+          .join("");
+        const foot = `<tr><td><b>Setores no pico do domingo</b></td>${semN
+          .map((w) => {
+            const c = D.cov[w].filter((x) => x.min > 0);
+            const ruins = c.filter((x) => x.falta);
+            return `<td>${ruins.length ? ruins.map((x) => `<span class="pill ${x.ess ? "bad" : "warn"}" style="margin:1px">${esc(x.nome)} ${x.pico}/${x.min}</span>`).join("<br>") : `<span class="pill ok">${c.length}/${c.length} ok</span>`}</td>`;
+          })
+          .join("")}</tr>`;
+        $("#tb-dom").innerHTML =
+          `<thead><tr><th>Funcionário</th>${semN.map((w) => `<th>Domingo ${w + 1}</th>`).join("")}</tr></thead><tbody>${body}</tbody><tfoot>${foot}</tfoot>`;
+        const al = [];
+        semN.forEach((w) =>
+          D.cov[w].forEach((x) => {
+            if (x.falta)
+              al.push(
+                `<div class="alert-row ${x.ess ? "" : "warn"}">Rodízio, domingo ${w + 1}: ${esc(x.nome)} fica com ${x.pico} de ${x.min} no pico. Avalie contratar folguista ou trocar o rodízio.</div>`,
+              );
+          }),
+        );
+        const semSexo = D.linhas.filter((r) => !r.l.p.sexo).length;
+        if (semSexo)
+          al.push(
+            `<div class="alert-row warn">${semSexo} pessoa(s) sem sexo informado. Usei a regra mais restrita (domingo sim, domingo não).</div>`,
+          );
+        if (al.length) {
+          const okRow = $("#alerts .alert-row.ok");
+          if (okRow) okRow.remove();
+          $("#alerts").insertAdjacentHTML("beforeend", al.join(""));
+        }
+      }
+      function textosBeneficios() {
+        const b = R.ben,
+          n = S.equipe.length;
+        const empresa = [],
+          equipe = [];
+        if (b.porDia > 0)
+          empresa.push([
+            brl(b.econMes),
+            "a menos por mês em benefícios",
+            `${brl(b.econAno)} por ano: ${n} pessoa(s) com 1 dia a menos de vale e refeição por semana`,
+          ]);
+        else
+          empresa.push([
+            "R$",
+            "Economia em benefícios por dia",
+            "Preencha vale-transporte e refeição na aba Benefícios para calcular",
+          ]);
+        empresa.push([
+          "1 dia",
+          "a menos de deslocamento por semana",
+          "Menos custo de vale-transporte e de refeição servida à equipe",
+        ]);
+        empresa.push([
+          "Retenção",
+          "equipe mais descansada",
+          "A tendência é de menos faltas, menos rotatividade e mais facilidade para contratar",
+        ]);
+        equipe.push(
+          b.diasAntes === 6
+            ? [
+                "+52",
+                "folgas por ano por pessoa",
+                "Duas folgas remuneradas por semana, com rodízio de domingos",
+              ]
+            : ["2 folgas", "por semana para todos", "Com rodízio de domingos"],
+        );
+        equipe.push([
+          `-${b.horasMenos}h`,
+          "por semana, sem reduzir salário",
+          S.fase === 42
+            ? "Em dez/2027 a redução chega a 4h semanais"
+            : "Jornada de 5 dias de 8h",
+        ]);
+        equipe.push([
+          "Previsível",
+          "escala fixa por setor",
+          "Cada um sabe com antecedência os dias de folga",
+        ]);
+        return { empresa, equipe };
+      }
+      function renderBeneficios() {
+        const t = textosBeneficios();
+        const col = (tit, arr) =>
+          `<div class="ben-col"><h4>${tit}</h4>${arr.map(([n, a, b]) => `<div class="ben-item"><span class="num">${esc(n)}</span><span class="txt">${esc(a)}<small>${esc(b)}</small></span></div>`).join("")}</div>`;
+        $("#ben").innerHTML =
+          col("Para a empresa", t.empresa) + col("Para a equipe", t.equipe);
+      }
+      function renderHeat() {
+        const ab = S.dias.filter((d) => d.aberto).map(janelaDia);
+        if (!ab.length) {
+          $("#tb-heat").innerHTML = "";
+          return;
+        }
+        let ini =
+            Math.floor((Math.min(...ab.map((x) => x[0])) - 120) / 60) * 60,
+          fim = Math.max(...ab.map((x) => x[1])) + 30;
+        let max = 1;
+        const grid = [];
+        for (let h = ini; h < fim; h += 60) {
+          const r = S.dias.map((dia, d) => {
+            if (!dia.aberto) return null;
+            const m = h + 30;
+            const v = R.linhas.filter((l) => {
+              const c = l.dias[d];
+              return c.tipo === "trab" && c.st <= m && c.en > m;
+            }).length;
+            const [pi, pf] = picoDia(dia);
+            return { v, pk: m >= pi && m < pf };
+          });
+          r.forEach((x) => {
+            if (x && x.v > max) max = x.v;
+          });
+          grid.push([h, r]);
+        }
+        $("#tb-heat").innerHTML =
+          `<thead><tr><th></th>${DIAS.map((d) => `<th>${d}</th>`).join("")}</tr></thead><tbody>${grid
+            .map(
+              ([h, r]) =>
+                `<tr><td class="hr">${fmt(h)}</td>${r
+                  .map((x) => {
+                    if (!x)
+                      return `<td class="v" style="color:var(--off-fg)">·</td>`;
+                    const a = x.v / max;
+                    return `<td class="v ${x.pk ? "pk" : ""}" style="background:color-mix(in srgb, var(--accent) ${Math.round(a * 85)}%, var(--surface-2));color:${a > 0.55 ? "#fff" : "var(--fg)"}">${x.v || ""}</td>`;
+                  })
+                  .join("")}</tr>`,
+            )
+            .join("")}</tbody>`;
+      }
+      function changed() {
+        save();
+        renderEscala();
+      }
+
+      $("#btn-regerar").onclick = () => {
+        S.ajustes = {};
+        save();
+        renderEscala();
+        toast("Sugestão refeita");
+      };
+      function textoEscala() {
+        const E = S.empresa;
+        const L = [];
+        L.push(`${E.nome || "Empresa"} — Escala 5x2 (${S.fase}h/semana)`);
+        L.push(["Funcionário", "Função", "Setor", ...DIAS, "Horas"].join("\t"));
+        R.linhas.forEach((l) =>
+          L.push(
+            [
+              l.p.nome || "Sem nome",
+              l.p.funcao || "",
+              l.p.setor || "",
+              ...l.dias.map((c) =>
+                c.tipo === "trab"
+                  ? `${fmt(c.st)}-${fmt(c.en)}`
+                  : c.tipo === "folga"
+                    ? "FOLGA"
+                    : "FECHADO",
+              ),
+              fmtH(l.horas),
+            ].join("\t"),
+          ),
+        );
+        L.push("");
+        L.push(["Setor (no pico / mínimo)", "", "", ...DIAS, ""].join("\t"));
+        R.setores.forEach((s) =>
+          L.push(
+            [
+              s.nome || "Sem setor",
+              "",
+              s.cfg.essencial ? "essencial" : "",
+              ...s.dias.map((c) => (c ? `${c.pico}/${c.min}` : "-")),
+              "",
+            ].join("\t"),
+          ),
+        );
+        const D = rodizio();
+        if (D && D.linhas.length) {
+          L.push("");
+          L.push(
+            [
+              "Rodízio de domingos",
+              "",
+              ...[1, 2, 3, 4].map((w) => "Domingo " + w),
+            ].join("\t"),
+          );
+          D.linhas.forEach((r) =>
+            L.push(
+              [
+                r.l.p.nome || "Sem nome",
+                r.l.p.setor || "",
+                ...r.semanas.map((o) =>
+                  o
+                    ? `FOLGA${r.troca != null ? " (trabalha " + DIAS[r.troca] + ")" : ""}`
+                    : "Trabalha",
+                ),
+              ].join("\t"),
+            ),
+          );
+        }
+        return L.join("\n");
+      }
+      $("#btn-copiar").onclick = () => {
+        const t = textoEscala();
+        const fb = () => {
+          $("#copy-fallback").hidden = false;
+          const ta = $("#copy-text");
+          ta.value = t;
+          ta.focus();
+          ta.select();
+        };
+        try {
+          navigator.clipboard
+            .writeText(t)
+            .then(
+              () => toast("Escala copiada. Cole no Excel ou no WhatsApp."),
+              fb,
+            );
+        } catch (e) {
+          fb();
+        }
+      };
+
+      /* ---------- PDF com identidade visual ---------- */
+      let DL = null;
+      if (window.jspdf) $("#btn-pdf").hidden = false;
+      function slug(t) {
+        return (
+          (t || "empresa")
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .replace(/[^a-zA-Z0-9]+/g, "_")
+            .replace(/^_|_$/g, "")
+            .slice(0, 50) || "empresa"
+        );
+      }
+      function gerarPDF() {
+        const { jsPDF } = window.jspdf;
+        R = calcular();
+        const doc = new jsPDF({
+          orientation: "landscape",
+          unit: "mm",
+          format: "a4",
+        });
+        const W = 297,
+          H = 210,
+          M = 14;
+        const NAVY = [2, 25, 59],
+          BLUE = [3, 103, 247],
+          CYAN = [2, 197, 254],
+          SILVER = [221, 221, 223],
+          INK = [14, 26, 46],
+          MUTED = [90, 102, 120],
+          RED = [180, 35, 24],
+          GREEN = [19, 122, 69],
+          ORANGE = [166, 91, 0];
+        const E = S.empresa,
+          n = S.equipe.length;
+        const antes = n * 44,
+          depois = Math.round(R.linhas.reduce((s, l) => s + l.horas, 0) / 60);
+        let cel = 0,
+          ok = 0;
+        R.setores.forEach((s) =>
+          s.dias.forEach((c) => {
+            if (c && c.min > 0) {
+              cel++;
+              if (!c.falta) ok++;
+            }
+          }),
+        );
+        const reforco = R.setores.reduce((t, s) => t + s.reforco, 0);
+        const hoje = new Date().toLocaleDateString("pt-BR");
+        const header = () => {
+          doc.setFillColor(...NAVY);
+          doc.rect(0, 0, W, 24, "F");
+          doc.setFillColor(...BLUE);
+          doc.rect(0, 24, W * 0.62, 1.2, "F");
+          doc.setFillColor(...CYAN);
+          doc.rect(W * 0.62, 24, W * 0.38, 1.2, "F");
+          try {
+            doc.addImage($("#logo").src, "PNG", M, 6, 62, (62 * 123) / 641);
+          } catch (e) {}
+          doc.setTextColor(255, 255, 255);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(11);
+          doc.text("ESCALA 5x2 SUGERIDA", W - M, 11, { align: "right" });
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(8.5);
+          doc.setTextColor(...SILVER);
+          doc.text(
+            `${S.fase}h semanais${S.fase === 42 ? " (com acordo coletivo)" : ""} · EC 141/2026`,
+            W - M,
+            16.5,
+            { align: "right" },
+          );
+        };
+        const novaPagina = () => {
+          doc.addPage();
+          header();
+          return 34;
+        };
+        header();
+        let y = 36;
+        doc.setTextColor(...NAVY);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(18);
+        doc.text(E.nome || "Empresa", M, y);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(9.5);
+        doc.setTextColor(...MUTED);
+        const picos = S.dias
+          .map((d, i) => (d.aberto && d.tipo === "pico" ? DIAS[i] : null))
+          .filter(Boolean);
+        doc.text(
+          [
+            E.ramo,
+            E.cidade,
+            picos.length ? `Dias de pico: ${picos.join(", ")}` : "",
+            `${fmtH(jornadaMin())} por dia + ${fmtH(S.intervalo)} de intervalo`,
+          ]
+            .filter(Boolean)
+            .join("   ·   "),
+          M,
+          y + 6,
+        );
+        y += 12;
+        const kp = [
+          [
+            "EQUIPE CLT",
+            String(n),
+            `${R.setores.filter((s) => s.pessoas).length} setores`,
+            NAVY,
+          ],
+          ["HORAS/SEMANA", depois + "h", `antes: ${antes}h na 6x1`, NAVY],
+          [
+            "SETORES COBERTOS NO PICO",
+            `${ok}/${cel}`,
+            "setor x dia aberto",
+            ok < cel ? ORANGE : GREEN,
+          ],
+          [
+            "REFORÇO ESTIMADO",
+            String(reforco),
+            reforco
+              ? R.setores
+                  .filter((s) => s.reforco)
+                  .map((s) => `${s.reforco} ${s.nome}`)
+                  .join(", ")
+              : "sem contratação",
+            reforco ? RED : NAVY,
+          ],
+          [
+            "ECONOMIA EM BENEFÍCIOS",
+            R.ben.porDia ? brl(R.ben.econMes) : "-",
+            R.ben.porDia ? "por mês" : "não informado",
+            GREEN,
+          ],
+        ];
+        const kw = (W - 2 * M - 4 * 4) / 5;
+        kp.forEach((k, i) => {
+          const x = M + i * (kw + 4);
+          doc.setFillColor(243, 245, 249);
+          doc.roundedRect(x, y, kw, 22, 2, 2, "F");
+          doc.setFillColor(...k[3]);
+          doc.rect(x, y + 3, 1, 16, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(6.8);
+          doc.setTextColor(...MUTED);
+          doc.text(k[0], x + 5, y + 6);
+          doc.setFontSize(14);
+          doc.setTextColor(...k[3]);
+          doc.text(k[1], x + 5, y + 13.5);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7);
+          doc.setTextColor(...MUTED);
+          doc.text(doc.splitTextToSize(k[2], kw - 8)[0], x + 5, y + 18.5);
+        });
+        y += 28;
+        const head = [
+          [
+            "Funcionário",
+            ...DIAS.map((d, i) =>
+              S.dias[i].aberto
+                ? S.dias[i].tipo === "pico"
+                  ? d + " (pico)"
+                  : d
+                : d + " (fechado)",
+            ),
+            "Horas",
+          ],
+        ];
+        const body = [],
+          meta = [];
+        let cur = null;
+        R.linhas.forEach((l) => {
+          if (l.p.setor !== cur) {
+            cur = l.p.setor;
+            const c = setorCfg(cur);
+            body.push([
+              {
+                content: `${(cur || "Sem setor").toUpperCase()}${c.essencial ? "  ·  ESSENCIAL" : ""}   ·   mínimo ${c.minNormal} em dia normal, ${c.minPico} em dia de pico`,
+                colSpan: 9,
+              },
+            ]);
+            meta.push(null);
+          }
+          body.push([
+            `${l.p.nome || "Sem nome"}\n${l.p.funcao || ""}`,
+            ...l.dias.map((c) =>
+              c.tipo === "trab"
+                ? `${fmt(c.st)} - ${fmt(c.en)}`
+                : c.tipo === "folga"
+                  ? "FOLGA"
+                  : "-",
+            ),
+            fmtH(l.horas),
+          ]);
+          meta.push(l);
+        });
+        const foot = [
+          [
+            "Total no pico / mínimo",
+            ...R.total.map((c) => (c ? `${c.pico} / ${c.min}` : "-")),
+            "",
+          ],
+        ];
+        doc.autoTable({
+          head,
+          body,
+          foot,
+          startY: y,
+          margin: { left: M, right: M, top: 32, bottom: 18 },
+          theme: "grid",
+          showFoot: "lastPage",
+          styles: {
+            font: "helvetica",
+            fontSize: 8.3,
+            cellPadding: { top: 2, bottom: 2, left: 2, right: 2 },
+            lineColor: [214, 220, 230],
+            lineWidth: 0.2,
+            textColor: INK,
+            halign: "center",
+            valign: "middle",
+          },
+          headStyles: {
+            fillColor: NAVY,
+            textColor: 255,
+            fontStyle: "bold",
+            fontSize: 7.8,
+          },
+          footStyles: {
+            fillColor: [238, 242, 248],
+            textColor: NAVY,
+            fontStyle: "bold",
+          },
+          columnStyles: {
+            0: { halign: "left", cellWidth: 44 },
+            8: { cellWidth: 17, fontStyle: "bold" },
+          },
+          didParseCell: (d) => {
+            if (d.section === "body") {
+              const l = meta[d.row.index];
+              if (!l) {
+                d.cell.styles.fillColor = [246, 248, 252];
+                d.cell.styles.textColor = NAVY;
+                d.cell.styles.fontStyle = "bold";
+                d.cell.styles.fontSize = 7.2;
+                d.cell.styles.halign = "left";
+                return;
+              }
+              if (d.column.index === 0) d.cell.styles.fontStyle = "bold";
+              if (d.column.index >= 1 && d.column.index <= 7) {
+                const c = l.dias[d.column.index - 1];
+                if (c.tipo === "folga") {
+                  d.cell.styles.fillColor = [234, 237, 242];
+                  d.cell.styles.textColor = [107, 118, 134];
+                  d.cell.styles.fontStyle = "bold";
+                  d.cell.styles.fontSize = 7.3;
+                } else if (c.tipo === "fechado") {
+                  d.cell.styles.fillColor = [248, 249, 251];
+                  d.cell.styles.textColor = [160, 168, 180];
+                } else
+                  d.cell.styles.fillColor = c.pico
+                    ? [227, 238, 255]
+                    : [255, 241, 220];
+              }
+            }
+            if (
+              d.section === "foot" &&
+              d.column.index >= 1 &&
+              d.column.index <= 7
+            ) {
+              const c = R.total[d.column.index - 1];
+              if (c) d.cell.styles.textColor = c.pico < c.min ? RED : GREEN;
+            }
+            if (d.section === "foot" && d.column.index === 0)
+              d.cell.styles.halign = "left";
+          },
+          didDrawPage: () => {
+            if (doc.internal.getCurrentPageInfo().pageNumber > 1) header();
+          },
+        });
+        y = doc.lastAutoTable.finalY + 7;
+        // cobertura por setor
+        if (y + 12 + R.setores.length * 7 > H - 18) y = novaPagina();
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.setTextColor(...BLUE);
+        doc.text("COBERTURA POR SETOR NO PICO (presentes / mínimo)", M, y);
+        y += 2;
+        doc.autoTable({
+          startY: y,
+          margin: { left: M, right: M, top: 32, bottom: 18 },
+          theme: "grid",
+          head: [["Setor", ...DIAS, "Reforço"]],
+          body: R.setores.map((s) => [
+            `${s.nome || "Sem setor"}${s.cfg.essencial ? " (essencial)" : ""}`,
+            ...s.dias.map((c) => (c ? `${c.pico} / ${c.min}` : "-")),
+            s.reforco ? `+${s.reforco}` : "-",
+          ]),
+          styles: {
+            font: "helvetica",
+            fontSize: 8,
+            cellPadding: 1.6,
+            lineColor: [214, 220, 230],
+            lineWidth: 0.2,
+            textColor: INK,
+            halign: "center",
+          },
+          headStyles: {
+            fillColor: [238, 242, 248],
+            textColor: NAVY,
+            fontStyle: "bold",
+          },
+          columnStyles: {
+            0: { halign: "left", cellWidth: 44, fontStyle: "bold" },
+            8: { cellWidth: 17 },
+          },
+          didParseCell: (d) => {
+            if (d.section !== "body") return;
+            const s = R.setores[d.row.index];
+            if (d.column.index >= 1 && d.column.index <= 7) {
+              const c = s.dias[d.column.index - 1];
+              if (c && c.min > 0) {
+                d.cell.styles.textColor = c.falta
+                  ? s.cfg.essencial
+                    ? RED
+                    : ORANGE
+                  : GREEN;
+                d.cell.styles.fontStyle = "bold";
+              }
+            }
+            if (d.column.index === 8 && s.reforco) {
+              d.cell.styles.textColor = s.cfg.essencial ? RED : ORANGE;
+              d.cell.styles.fontStyle = "bold";
+            }
+          },
+          didDrawPage: () => {
+            if (doc.internal.getCurrentPageInfo().pageNumber > 1) header();
+          },
+        });
+        y = doc.lastAutoTable.finalY + 7;
+        // rodízio de domingos
+        const D = rodizio();
+        if (D && D.linhas.length) {
+          if (y + 14 + D.linhas.length * 6 > H - 18) y = novaPagina();
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(...BLUE);
+          doc.text(
+            "RODÍZIO DE DOMINGOS · 4 SEMANAS (mulheres: domingo sim, domingo não · homens: no máximo 2 seguidos)",
+            M,
+            y,
+          );
+          y += 2;
+          doc.autoTable({
+            startY: y,
+            margin: { left: M, right: M, top: 32, bottom: 18 },
+            theme: "grid",
+            head: [
+              [
+                "Funcionário",
+                "Setor",
+                "Domingo 1",
+                "Domingo 2",
+                "Domingo 3",
+                "Domingo 4",
+              ],
+            ],
+            body: D.linhas.map((r) => [
+              r.l.p.nome || "Sem nome",
+              r.l.p.setor || "",
+              ...r.semanas.map((o) =>
+                o
+                  ? `FOLGA${r.troca != null ? " (trabalha " + DIAS[r.troca] + ")" : ""}`
+                  : "Trabalha",
+              ),
+            ]),
+            styles: {
+              font: "helvetica",
+              fontSize: 8,
+              cellPadding: 1.6,
+              lineColor: [214, 220, 230],
+              lineWidth: 0.2,
+              textColor: INK,
+              halign: "center",
+            },
+            headStyles: {
+              fillColor: [238, 242, 248],
+              textColor: NAVY,
+              fontStyle: "bold",
+            },
+            columnStyles: {
+              0: { halign: "left", cellWidth: 44, fontStyle: "bold" },
+              1: { halign: "left", cellWidth: 34 },
+            },
+            didParseCell: (d) => {
+              if (
+                d.section === "body" &&
+                d.column.index >= 2 &&
+                String(d.cell.raw).startsWith("FOLGA")
+              ) {
+                d.cell.styles.fillColor = [226, 245, 234];
+                d.cell.styles.textColor = GREEN;
+                d.cell.styles.fontStyle = "bold";
+              }
+            },
+            didDrawPage: () => {
+              if (doc.internal.getCurrentPageInfo().pageNumber > 1) header();
+            },
+          });
+          y = doc.lastAutoTable.finalY + 7;
+        }
+        // benefícios
+        const t = textosBeneficios();
+        const colW = (W - 2 * M - 6) / 2;
+        const hB = 8 + 3 * 11;
+        if (y + hB > H - 18) y = novaPagina();
+        [
+          ["PARA A EMPRESA", t.empresa],
+          ["PARA A EQUIPE", t.equipe],
+        ].forEach(([tit, arr], i) => {
+          const x = M + i * (colW + 6);
+          doc.setFillColor(243, 245, 249);
+          doc.roundedRect(x, y, colW, hB, 2, 2, "F");
+          doc.setFillColor(...(i ? CYAN : BLUE));
+          doc.rect(x, y, colW, 1.2, "F");
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(8);
+          doc.setTextColor(...BLUE);
+          doc.text(`BENEFÍCIOS DA 5x2 · ${tit}`, x + 5, y + 6.5);
+          arr.forEach(([num, a, b], j) => {
+            const yy = y + 14 + j * 11;
+            doc.setFont("helvetica", "bold");
+            doc.setFontSize(11);
+            doc.setTextColor(...NAVY);
+            doc.text(num, x + 5, yy);
+            doc.setFontSize(8.5);
+            doc.setTextColor(...INK);
+            doc.text(a, x + 36, yy - 1.5);
+            doc.setFont("helvetica", "normal");
+            doc.setFontSize(7.5);
+            doc.setTextColor(...MUTED);
+            doc.text(doc.splitTextToSize(b, colW - 42)[0], x + 36, yy + 2.5);
+          });
+        });
+        y += hB + 6;
+        // pontos de atenção
+        const notas = [
+          "A partir de 16/12/2026: duas folgas remuneradas por semana e limite de 42h semanais. Em dezembro de 2027 o limite cai para 40h. Sem redução de salário. Hora extra com adicional de 50%.",
+          "O limite diário continua sendo 8h. Jornada de 8h24 (42h) só com acordo ou convenção coletiva; sem acordo, a escala já fica em 40h.",
+          "Domingos: mulheres não trabalham dois domingos seguidos; homens no máximo dois seguidos. Outras escalas só com regime compensatório em acordo coletivo.",
+          "Proposta de ponto de partida, a validar com a contabilidade ou o jurídico trabalhista antes da comunicação à equipe.",
+        ];
+        doc.setFontSize(8.5);
+        const linhas = notas.map((x) => doc.splitTextToSize(x, W - 2 * M - 14));
+        const hN = 8 + linhas.reduce((s, l) => s + l.length * 3.8 + 1.2, 0);
+        if (y + hN > H - 18) y = novaPagina();
+        doc.setFillColor(243, 245, 249);
+        doc.roundedRect(M, y, W - 2 * M, hN, 2, 2, "F");
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(8);
+        doc.setTextColor(...BLUE);
+        doc.text("PONTOS DE ATENÇÃO", M + 5, y + 5.5);
+        let yy = y + 10.5;
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(8.5);
+        doc.setTextColor(...INK);
+        linhas.forEach((l) => {
+          doc.setFillColor(...BLUE);
+          doc.circle(M + 6, yy - 1.2, 0.7, "F");
+          doc.text(l, M + 9, yy);
+          yy += l.length * 3.8 + 1.2;
+        });
+        const pages = doc.getNumberOfPages();
+        for (let i = 1; i <= pages; i++) {
+          doc.setPage(i);
+          doc.setDrawColor(...SILVER);
+          doc.setLineWidth(0.3);
+          doc.line(M, H - 12, W - M, H - 12);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(7.5);
+          doc.setTextColor(...MUTED);
+          doc.text(
+            `Padroniza · Consultoria Food Service · Método Padroniza${E.responsavel ? "   ·   Responsável: " + E.responsavel : ""}   ·   Gerado em ${hoje}`,
+            M,
+            H - 7,
+          );
+          doc.text(`${i} / ${pages}`, W - M, H - 7, { align: "right" });
+        }
+        return doc;
+      }
+      function baixarPDF() {
+        const b = $("#btn-pdf");
+        b.disabled = true;
+        b.textContent = "Gerando PDF...";
+        try {
+          gerarPDF().save(`Escala_5x2_${slug(S.empresa.nome)}.pdf`);
+          toast("PDF gerado");
+        } catch (e) {
+          toast("Não foi possível gerar o PDF");
+          console.error(e);
+        } finally {
+          b.disabled = false;
+          b.textContent = "Exportar PDF";
+        }
+      }
+      $("#btn-pdf").onclick = baixarPDF;
+      let zArm = false;
+      $("#btn-zerar").onclick = (e) => {
+        if (!zArm) {
+          zArm = true;
+          e.target.textContent = "Confirmar: apagar tudo";
+          setTimeout(() => {
+            zArm = false;
+            e.target.textContent = "Começar do zero";
+          }, 4000);
+          return;
+        }
+        zArm = false;
+        e.target.textContent = "Começar do zero";
+        S = vazio();
+        save();
+        renderAll();
+        toast("Simulador zerado");
+      };
+      $("#btn-exemplo").onclick = () => {
+        S = exemplo();
+        save();
+        renderAll();
+        toast("Exemplo carregado");
+      };
+      let tt;
+      function toast(msg) {
+        let el = $(".toast");
+        if (!el) {
+          el = document.createElement("div");
+          el.className = "toast";
+          el.setAttribute("role", "status");
+          document.body.appendChild(el);
+        }
+        el.textContent = msg;
+        el.hidden = false;
+        clearTimeout(tt);
+        tt = setTimeout(() => (el.hidden = true), 2600);
+      }
+      function renderAll() {
+        renderFase();
+        renderEmpresa();
+        renderFunc();
+        renderSetores();
+        renderEquipe();
+        renderBen();
+        renderEscala();
+      }
+      renderAll();
+      renderLei();
+      show(location.hash.slice(1) || "lei");
+    </script>
+  </body>
+</html>
